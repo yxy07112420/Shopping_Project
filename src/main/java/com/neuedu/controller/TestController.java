@@ -1,5 +1,6 @@
 package com.neuedu.controller;
 
+import com.neuedu.common.ServerResponse;
 import com.neuedu.dao.UserInfoMapper;
 import com.neuedu.pojo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,12 @@ public class TestController {
     UserInfoMapper userInfoMapper;
     //查询用户信息
     @RequestMapping(value = "/user/{userid}")
-    public UserInfo getUser(@PathVariable Integer userid){
-        return userInfoMapper.selectByPrimaryKey(userid);
+    public ServerResponse<UserInfo> getUser(@PathVariable Integer userid){
+        UserInfo  userInfo =  userInfoMapper.selectByPrimaryKey(userid);
+        if(userInfo != null){
+            return ServerResponse.responseIsSuccess(null, userInfo);
+        }else {
+            return ServerResponse.responseIsError("error");
+        }
     }
 }
