@@ -7,4 +7,5 @@ public class ResponseCord {
 
     public static final Integer SUCCESS = 0;
     public static final Integer ERROR = 1;
+    public static final String CURRENTUSER="current_user";
 }

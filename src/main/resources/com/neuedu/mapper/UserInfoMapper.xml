@@ -77,4 +77,16 @@
     update_time, ip
     from neuedu_user
   </select>
+  <!--验证用户名是否存在-->
+  <select id="checkUsernameIsExist" parameterType="string" resultType="int">
+      select count(*) from neuedu_user where username=#{username}
+  </select>
+  <!--根据用户名和密码查询用户信息-->
+  <select id="loginByUsernameAndPassword" parameterType="map" resultMap="BaseResultMap">
+    select id, username, password, email, phone, question, answer, role, create_time,
+    update_time, ip
+    from neuedu_user
+    where username=#{username}
+    and password=#{password}
+  </select>
 </mapper>
