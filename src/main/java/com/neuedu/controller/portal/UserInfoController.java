@@ -22,7 +22,6 @@ public class UserInfoController {
     //登录
     @RequestMapping(value = "/login.do")
     public ServerResponse isLoginSuccess(HttpSession session,String username, String password){
-
         ServerResponse loginSuccess = userInfoService.isLoginSuccess(username, password);
         if(loginSuccess.isSuccess()){//登录成功
             UserInfo userInfo = (UserInfo) loginSuccess.getDate();
@@ -30,5 +29,11 @@ public class UserInfoController {
             session.setAttribute(ResponseCord.CURRENTUSER,userInfo);
         }
         return loginSuccess;
+    }
+    //注册
+    @RequestMapping(value = "/register.do")
+    public ServerResponse isRegisterSuccess(HttpSession session,UserInfo userInfo){
+        ServerResponse registerSuccess = userInfoService.isRegisterSuccess(userInfo);
+        return registerSuccess;
     }
 }

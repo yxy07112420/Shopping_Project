@@ -37,8 +37,8 @@
       update_time, ip)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR})
+      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
+      now(), #{ip,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.neuedu.pojo.UserInfo" >
     <!--
@@ -81,6 +81,11 @@
   <select id="checkUsernameIsExist" parameterType="string" resultType="int">
       select count(*) from neuedu_user where username=#{username}
   </select>
+  <!--验证邮箱是否存在-->
+  <select id="checkEmailIsExist" parameterType="string" resultType="int">
+      select count(*) from neuedu_user where email=#{email}
+  </select>
+
   <!--根据用户名和密码查询用户信息-->
   <select id="loginByUsernameAndPassword" parameterType="map" resultMap="BaseResultMap">
     select id, username, password, email, phone, question, answer, role, create_time,

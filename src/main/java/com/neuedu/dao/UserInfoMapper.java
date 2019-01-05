@@ -53,6 +53,10 @@ public interface UserInfoMapper {
      */
     int checkUsernameIsExist(String username);
     /**
+     * 验证邮箱是否存在
+     */
+    int checkEmailIsExist(String username);
+    /**
      * 验证用户名密码是否正确（登录是否成功）
      */
     UserInfo loginByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
