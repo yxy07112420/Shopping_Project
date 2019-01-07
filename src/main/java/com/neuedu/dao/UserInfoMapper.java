@@ -1,5 +1,6 @@
 package com.neuedu.dao;
 
+import com.neuedu.common.ServerResponse;
 import com.neuedu.pojo.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -60,4 +61,12 @@ public interface UserInfoMapper {
      * 验证用户名密码是否正确（登录是否成功）
      */
     UserInfo loginByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+    //根据用户名查询密保问题
+    String forget_user_question(String username);
+    //根据用户名、密保问题和答案进行校验
+    int forget_check_question(@Param("username") String username, @Param("question") String question, @Param("answer") String answer);
+    //根据用户名找回密码（忘记密码重置密码）
+    int updateUserPasswordByUsername(@Param("username") String username,@Param("newPassword") String newPassword);
+   //更新用户个人信息
+    int updateUserInfo(UserInfo userInfo);
 }
