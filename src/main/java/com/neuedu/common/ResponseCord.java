@@ -73,4 +73,36 @@ public class ResponseCord {
             this.desc = desc;
         }
     }
+    //定义购物车是否选中状态（枚举类型）
+    public enum cartProductEnum{
+        PRODUCT_ISCHECKED(1,"已选中"),
+        PRODUCT_NOCHECKED(0,"未选中")
+        ;
+        private Integer code;
+        private String desc;
+
+        private cartProductEnum(){
+
+        }
+        private cartProductEnum(Integer code,String desc){
+            this.code = code;
+            this.desc = desc;
+        }
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
 }

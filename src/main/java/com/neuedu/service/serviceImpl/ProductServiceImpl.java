@@ -13,6 +13,7 @@ import com.neuedu.pojo.Product;
 import com.neuedu.service.CategoryService;
 import com.neuedu.service.ProductService;
 import com.neuedu.utils.DateChangeUtils;
+import com.neuedu.utils.FTPUtils;
 import com.neuedu.utils.PropertisUtils;
 import com.neuedu.vo.ProductDetailVO;
 import com.neuedu.vo.ProductListVO;
@@ -224,9 +225,13 @@ public class ProductServiceImpl implements ProductService {
         //将文件写入到file2中
         try {
             file.transferTo(file2);
+            //将图片上传到图片服务器
+            FTPUtils.uploadFile(Lists.<File>newArrayList(file2));
             Map<String,String> map = new HashMap<String, String>();
             map.put("uri",newName);
             map.put("url",PropertisUtils.readByKey("imageHost")+newName);
+            //c从本地删除应用服务器上的图片
+            file2.delete();
             return ServerResponse.responseIsSuccess(null,map);
         } catch (IOException e) {
             e.printStackTrace();
