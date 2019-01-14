@@ -6,6 +6,7 @@ import com.neuedu.pojo.UserInfo;
 import com.neuedu.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -95,7 +96,7 @@ public class CartController {
         if(userInfo == null){
             return ServerResponse.responseIsError("当前无用户登录或用户登录已超时");
         }
-        return cartService.select(userInfo.getId(),productId,ResponseCord.cartProductEnum.PRODUCT_ISCHECKED.getCode());
+        return cartService.select(userInfo.getId(),productId, ResponseCord.CartProductEnum.PRODUCT_ISCHECKED.getCode());
     }
     /**
      * 取消选中某件商品
@@ -109,7 +110,7 @@ public class CartController {
         if(userInfo == null){
             return ServerResponse.responseIsError("当前无用户登录或用户登录已超时");
         }
-        return cartService.select(userInfo.getId(),productId,ResponseCord.cartProductEnum.PRODUCT_NOCHECKED.getCode());
+        return cartService.select(userInfo.getId(),productId, ResponseCord.CartProductEnum.PRODUCT_NOCHECKED.getCode());
     }
     /**
      *全选
@@ -123,7 +124,7 @@ public class CartController {
         if(userInfo == null){
             return ServerResponse.responseIsError("当前无用户登录或用户登录已超时");
         }
-        return cartService.select(userInfo.getId(),null,ResponseCord.cartProductEnum.PRODUCT_ISCHECKED.getCode());
+        return cartService.select(userInfo.getId(),null, ResponseCord.CartProductEnum.PRODUCT_ISCHECKED.getCode());
     }
     /**
      * 取消全选
@@ -137,7 +138,7 @@ public class CartController {
         if(userInfo == null){
             return ServerResponse.responseIsError("当前无用户登录或用户登录已超时");
         }
-        return cartService.select(userInfo.getId(),null,ResponseCord.cartProductEnum.PRODUCT_NOCHECKED.getCode());
+        return cartService.select(userInfo.getId(),null, ResponseCord.CartProductEnum.PRODUCT_NOCHECKED.getCode());
     }
     /**
      * 统计购物车中产品的数量
@@ -151,4 +152,5 @@ public class CartController {
         }
         return cartService.select_cart_product_count(userInfo.getId());
     }
+
 }

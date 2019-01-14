@@ -89,4 +89,14 @@ public interface CartMapper {
      * @return
      */
     int select_cart_product_count(Integer userId);
+
+    /**
+     * 根据用户id查询已经选中的购物车信息
+     */
+    List<Cart> selectCartByUserIdAndCheck(Integer userId);
+
+    /**
+     * 清空购物车中的商品
+     */
+    int batchCart(List<Cart> cartList);
 }

@@ -11,7 +11,6 @@ import com.neuedu.service.CartService;
 import com.neuedu.utils.BigDecimalUtils;
 import com.neuedu.vo.CartProductVo;
 import com.neuedu.vo.CartVO;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +39,7 @@ public class CartServiceImpl implements CartService {
             cart1.setProductId(productId);
             cart1.setUserId(userId);
             cart1.setQuantity(count);
-            cart1.setChecked(ResponseCord.cartProductEnum.PRODUCT_ISCHECKED.getCode());
+            cart1.setChecked(ResponseCord.CartProductEnum.PRODUCT_ISCHECKED.getCode());
             int result = cartMapper.insert(cart1);
             if(result > 0){
                 CartVO cartVO = getCartVO(cart1.getUserId());
@@ -54,7 +53,7 @@ public class CartServiceImpl implements CartService {
             cart1.setQuantity(count);
             cart1.setUserId(cart.getUserId());
             cart1.setProductId(cart.getProductId());
-            cart1.setChecked(ResponseCord.cartProductEnum.PRODUCT_ISCHECKED.getCode());
+            cart1.setChecked(ResponseCord.CartProductEnum.PRODUCT_ISCHECKED.getCode());
             cart1.setId(cart.getId());
             //执行更新操作
             int result = cartMapper.updateByPrimaryKey(cart1);
@@ -129,7 +128,7 @@ public class CartServiceImpl implements CartService {
                 cart.setQuantity(stock);
                 cart.setUserId(cart.getUserId());
                 cart.setProductId(cart.getProductId());
-                cart.setChecked(ResponseCord.cartProductEnum.PRODUCT_ISCHECKED.getCode());
+                cart.setChecked(ResponseCord.CartProductEnum.PRODUCT_ISCHECKED.getCode());
                 cart.setId(cart.getId());
                 //执行更新操作
                 int result = cartMapper.updateByPrimaryKey(cart);

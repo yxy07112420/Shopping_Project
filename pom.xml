@@ -14,7 +14,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>shopping_project</name>
     <description>Demo project for Spring Boot</description>
-
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -226,15 +225,53 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-    </dependencies>
+        <!--防止打成jar包出错-->
+        <dependency>
+            <groupId>com.neuedu</groupId>
+            <artifactId>com.neuedu</artifactId>
+            <version>1.0</version>
 
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/alipay-sdk-java-3.3.0-source.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.neuedu</groupId>
+            <artifactId>com.neuedu</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/alipay-sdk-java-3.3.0.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.neuedu</groupId>
+            <artifactId>com.neuedu</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/alipay-trade-sdk-20161215-source.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.neuedu</groupId>
+            <artifactId>com.neuedu</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/alipay-trade-sdk-20161215.jar</systemPath>
+        </dependency>
+    </dependencies>
     <build>
+        <!--引入本地资源-->
+        <resources>
+            <resource>
+                <directory>lib</directory>
+                <targetPath>BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
@@ -286,5 +323,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
